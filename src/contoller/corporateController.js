@@ -1,0 +1,1 @@
+const CorporateModel = require("../model/corporateModel")
