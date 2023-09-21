@@ -38,6 +38,22 @@ let {
   financeUniqueEntries,
   financeRange,
 } = require("../contoller/financeController");
+
+let {
+  corporate,
+  getCorporate,
+  dupesCorporate,
+  corporateUniqueEntries,
+  corporateRange,
+} = require("../contoller/corporateController");
+
+let {
+  drvingSchool,
+  getDrivingSchool,
+  dupesDrivingSchool,
+  drivingSchoolUniqueEntries,
+  drivingSchoolRange,
+} =require("../contoller/drivingSchoolController")
 //======================================================================================
 
 router.get("/test-me", function (req, res) {
@@ -69,11 +85,23 @@ router.get("/duplicateInsurance", duplicateInsurance);
 router.get("/insuranceUniqueEntries", insuranceUniqueEntries);
 router.get("/insuranceRange", insuranceRange);
 //=====================================================================================
-router.post('/finance',finance)
-router.get('/getfinance',getfinance)
-router.get('/duplicateFinance',duplicateFinance)
-router.get('/financeUniqueEntries',financeUniqueEntries)
-router.get('/financeRange',financeRange)
+router.post("/finance", finance);
+router.get("/getfinance", getfinance);
+router.get("/duplicateFinance", duplicateFinance);
+router.get("/financeUniqueEntries", financeUniqueEntries);
+router.get("/financeRange", financeRange);
 //====================================================================================
+router.post("/corporate", corporate);
+router.get("/getCorporate", getCorporate);
+router.get("/dupesCorporate", dupesCorporate);
+router.get("/corporateUniqueEntries", corporateUniqueEntries);
+router.get("/corporateRange", corporateRange);
+//=================================================================================
+router.post('/drvingSchool',drvingSchool)
+router.get('/getDrivingSchool',getDrivingSchool)
+router.get('/dupesDrivingSchool',dupesDrivingSchool)
+router.get('/drivingSchoolUniqueEntries',drivingSchoolUniqueEntries)
+router.get("/drivingSchoolRange",drivingSchoolRange)
+//=================================================================================
 
 module.exports = router;

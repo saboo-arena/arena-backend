@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const popupSchema = new mongoose.Schema({
-    name:{
+    name:{                              
         type:String,
         require:true
     },

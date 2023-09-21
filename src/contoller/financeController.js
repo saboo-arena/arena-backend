@@ -44,7 +44,7 @@ const finance = async (req, res) => {
             $group: {
               _id: {
                 date: "$date",
-                mobile: "$phone  ",
+                mobile: "$phone",
                 vehicle: "$vehicle",
               },
               doc: { $first: "$$ROOT" },
@@ -68,8 +68,8 @@ const finance = async (req, res) => {
           $group: {
             _id: {
               date: "$date",
-              mobile: "$mobile",
-              vehicle: "$vehicle",
+              mobile: "$phone",
+            //   vehicle: "$vehicle",
             },
             count: { $sum: 1 },
           },
@@ -80,7 +80,7 @@ const finance = async (req, res) => {
   
             number: "$_id.mobile",
             date: "$_id.date",
-            vehicle: "$_id.vehicle",
+            // vehicle: "$_id.vehicle",
             count: 1,
           },
         },
@@ -102,9 +102,8 @@ const finance = async (req, res) => {
         {
           $group: {
             _id: {
-              date: "$date",
-              mobile: "$mobile",
-              vehicle: "$vehicle",
+                date: "$date",
+                mobile: "$phone",
             },
             doc: { $first: "$$ROOT" },
           },
@@ -138,9 +137,8 @@ const finance = async (req, res) => {
         {
           $group: {
             _id: {
-              date: "$date",
-              mobile: "$mobile",
-              vehicle: "$vehicle",
+                date: "$date",
+                mobile: "$phone",
             },
             doc: { $first: "$$ROOT" },
           },

@@ -28,7 +28,7 @@ const corporateSchema = new mongoose.Schema({
   deletedAt: {
     type: Date,
   },
-});
+},{timestamps:true});
 
 module.exports= mongoose.model('Corporate', corporateSchema);
 
