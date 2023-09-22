@@ -65,43 +65,43 @@ router.post("/popup", popup);
 router.get("/getPopups", getPopups);
 router.get("/dupilicatepopups", dupilicatepopups);
 router.get("/popupUniqueEntries", popupUniqueEntries);
-router.get("/popupRangeEntries", popupRangeEntries);
+router.post("/popupRangeEntries", popupRangeEntries);
 //=====================================================================================
 router.post("/service", service);
 router.get("/getService", getService);
 router.get("/dupeService", dupeService);
 router.get("/serviceUniqueEntries", serviceUniqueEntries);
-router.get("/serviceRangeData", serviceRangeData);
+router.post("/serviceRangeData", serviceRangeData);
 //===================================================================================
 router.post("/onRoadPrice", onRoadPrice);
 router.get("/getOnRoadPrice", getOnRoadPrice);
 router.get("/duplicateOnRoadPrice", duplicateOnRoadPrice);
 router.get("/onRoadPriceUniqueEntries", onRoadPriceUniqueEntries);
-router.get("/onRoadPriceRange", onRoadPriceRange);
+router.post("/onRoadPriceRange", onRoadPriceRange);
 //====================================================================================
 router.post("/insurance", insurance);
 router.get("/getIsurance", getIsurance);
 router.get("/duplicateInsurance", duplicateInsurance);
 router.get("/insuranceUniqueEntries", insuranceUniqueEntries);
-router.get("/insuranceRange", insuranceRange);
+router.post("/insuranceRange", insuranceRange);
 //=====================================================================================
 router.post("/finance", finance);
 router.get("/getfinance", getfinance);
 router.get("/duplicateFinance", duplicateFinance);
 router.get("/financeUniqueEntries", financeUniqueEntries);
-router.get("/financeRange", financeRange);
+router.post("/financeRange", financeRange);
 //====================================================================================
 router.post("/corporate", corporate);
 router.get("/getCorporate", getCorporate);
 router.get("/dupesCorporate", dupesCorporate);
 router.get("/corporateUniqueEntries", corporateUniqueEntries);
-router.get("/corporateRange", corporateRange);
+router.post("/corporateRange", corporateRange);
 //=================================================================================
 router.post('/drvingSchool',drvingSchool)
 router.get('/getDrivingSchool',getDrivingSchool)
 router.get('/dupesDrivingSchool',dupesDrivingSchool)
 router.get('/drivingSchoolUniqueEntries',drivingSchoolUniqueEntries)
-router.get("/drivingSchoolRange",drivingSchoolRange)
+router.post("/drivingSchoolRange",drivingSchoolRange)
 //=================================================================================
 
 module.exports = router;
