@@ -10,6 +10,10 @@ const InsuranceSchema = new mongoose.Schema({
     Phone:{
         type:String
     },
+    leadFrom : {
+      type: String,
+      default:"insurance"
+     },
     date: {
         type: String,
       },

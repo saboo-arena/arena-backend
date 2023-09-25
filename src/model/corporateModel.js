@@ -15,6 +15,10 @@ const corporateSchema = new mongoose.Schema({
   outlet: {
     type: String,
   },
+  leadFrom : {
+   type: String,
+   default:"corporate"
+  },
   date: {
     type: String,
   },

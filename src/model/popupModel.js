@@ -17,6 +17,10 @@ const popupSchema = new mongoose.Schema({
         type:String,
         require:true
     },
+    leadFrom : {
+        type: String,
+        default:"popup"
+       },
     date:{
         type: String,
     },

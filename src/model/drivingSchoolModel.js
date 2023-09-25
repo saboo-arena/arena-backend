@@ -16,6 +16,10 @@ const drivingSchoolSchema = new mongoose.Schema({
         type:String,
         require:true
     },
+    leadFrom : {
+        type: String,
+        default:"Driving School"
+       },
     date:{
         type: String,
     },

@@ -8,27 +8,22 @@ const serviceModel = require("../model/serviceModel");
 
 const allData = async (req, res) => {
     try {
-        // Create an array of promises, each with a label indicating the collection
-        const dataPromises = [
-            { key: 'corporateData', data: corporateModel.find().exec() },
-            { key: 'drivingSchoolData', data: drivingSchoolModel.find().exec() },
-            { key: 'financeData', data: financeModel.find().exec() },
-            { key: 'insuranceData', data: insuranceModel.find().exec() },
-            { key: 'onRoadPriceData', data: onRoadPriceModel.find().exec() },
-            { key: 'popupData', data: popupModel.find().exec() },
-            { key: 'serviceData', data: serviceModel.find().exec() }
-        ];
+        // Use Promise.all to query data from multiple collections concurrently
+        const data = await Promise.all([
+            corporateModel.find().exec(),
+            drivingSchoolModel.find().exec(),
+            financeModel.find().exec(),
+            insuranceModel.find().exec(),
+            onRoadPriceModel.find().exec(),
+            popupModel.find().exec(),
+            serviceModel.find().exec()
+        ]);
 
-        // Execute all promises concurrently using Promise.all
-        const responseData = {};
-
-        await Promise.all(dataPromises.map(async (promise) => {
-            const { key, data } = promise;
-            responseData[key] = await data;
-        }));
+        // Combine the results into a single array
+        const combinedData = data.reduce((acc, curr) => acc.concat(curr), []);
 
         // Return the combined data in the response
-        return res.status(200).send({ status: true, data: responseData });
+        return res.status(200).send({ status: true, data: combinedData });
     } catch (error) {
         return res.status(500).send({ status: false, message: error.message });
     }

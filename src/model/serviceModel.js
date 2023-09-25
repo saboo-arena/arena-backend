@@ -18,7 +18,10 @@ const serviceSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-
+    leadFrom : {
+      type: String,
+      default:"service"
+     },
     date: {
       type: String,
     },

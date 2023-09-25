@@ -19,7 +19,10 @@ const OnroadPriceSchema = new mongoose.Schema(
         type: String,
         trim: true,
       },
-  
+      leadFrom : {
+        type: String,
+        default:"on Road Price"
+       },
       date: {
         type: String,
       },
