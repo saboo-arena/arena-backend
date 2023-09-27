@@ -28,7 +28,87 @@ const allData = async (req, res) => {
         return res.status(500).send({ status: false, message: error.message });
     }
 };
+//===========================================================================
+
+
+const findDuplicates = async (model, phoneField, dateField, leadFromField, includeVehicle = false) => {
+    try {
+        const groupPipeline = [
+            {
+                $group: {
+                    _id: {
+                        number: `$${phoneField}`,
+                        date: `$${dateField}`,
+                        leadFrom: `$${leadFromField}`,
+                        vehicle: includeVehicle ? `$LEADCF6` : null
+                    },
+                    count: { $sum: 1 }
+                }
+            },
+            {
+                $project: {
+                    _id: 0,
+                    number: "$_id.number",
+                    date: "$_id.date",
+                    leadFrom: "$_id.leadFrom",
+                    vehicle: "$_id.vehicle",
+                    count: 1
+                }
+            },
+            { $match: { count: { $gt: 1 } } }
+        ];
+
+        const repeatedData = await model.aggregate(groupPipeline);
+
+        return { status: true, data: repeatedData };
+    } catch (error) {
+        return { status: false, message: error.message };
+    }
+};
+
+// Define a function to find duplicates in all collections
+// Define a function to find duplicates in all collections
+const findDuplicatesInAllCollections = async (req, res) => {
+    try {
+        const duplicateData = [];
+
+        // For each collection, specify the model, phone field, date field, and leadFrom field
+        const collections = [
+            { model: corporateModel, phoneField: "phone", dateField: "date", leadFromField: "leadFrom" },
+            { model: drivingSchoolModel, phoneField: "phone", dateField: "date", leadFromField: "leadFrom" },
+            { model: financeModel, phoneField: "phone", dateField: "date", leadFromField: "leadFrom" },
+            { model: insuranceModel, phoneField: "Phone", dateField: "date", leadFromField: "leadFrom" },
+            { model: onRoadPriceModel, phoneField: "Mobile", dateField: "date", leadFromField: "leadFrom", includeVehicle: true }, // Include vehicle field
+            { model: popupModel, phoneField: "phone", dateField: "date", leadFromField: "leadFrom" },
+            { model: serviceModel, phoneField: "Phone", dateField: "date", leadFromField: "leadFrom" }
+        ];
+
+        for (const { model, phoneField, dateField, leadFromField, includeVehicle } of collections) {
+            const result = await findDuplicates(model, phoneField, dateField, leadFromField, includeVehicle);
+            if (result.status) {
+                duplicateData.push(...result.data);
+            } else {
+                return res.status(500).send({ status: false, message: result.message });
+            }
+        }
+
+        return res.status(200).send({ status: true, data: duplicateData });
+    } catch (error) {
+        return res.status(500).send({ status: false, message: error.message });
+    }
+};
+
+
+// Export the findDuplicatesInAllCollections function for use in your Express routes
+module.exports = {
+    findDuplicatesInAllCollections
+};
+
+
+
 
 module.exports = {
-    allData
+    allData,
+    // findDuplicatesInCollections,
+    findDuplicatesInAllCollections
 };

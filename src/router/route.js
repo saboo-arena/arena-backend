@@ -55,7 +55,7 @@ let {
   drivingSchoolRange,
 } =require("../contoller/drivingSchoolController")
 
-let {allData}= require('../contoller/allDataController')
+let {allData,  findDuplicatesInAllCollections}= require('../contoller/allDataController')
 //======================================================================================
 
 router.get("/test-me", function (req, res) {
@@ -106,4 +106,6 @@ router.get('/drivingSchoolUniqueEntries',drivingSchoolUniqueEntries)
 router.post("/drivingSchoolRange",drivingSchoolRange)
 //=================================================================================
 router.get('/allData',allData)
+router.get("/findDuplicatesInAllCollections", findDuplicatesInAllCollections)
+// router.get('/allDataDupes', allDataDupes);
 module.exports = router;
