@@ -59,6 +59,7 @@ let {
   allData,
   findDuplicatesInAllCollections,
   findUniqueEntriesInAllCollections,
+  findDataInRangeInAllCollections
 } = require("../contoller/allDataController");
 //======================================================================================
 
@@ -112,4 +113,5 @@ router.post("/drivingSchoolRange", drivingSchoolRange);
 router.get("/allData", allData);
 router.get("/findDuplicatesInAllCollections", findDuplicatesInAllCollections);
 router.get("/findUniqueEntriesInAllCollections",findUniqueEntriesInAllCollections);
+router.get("/findDataInRangeInAllCollections",findDataInRangeInAllCollections )
 module.exports = router;
