@@ -53,9 +53,13 @@ let {
   dupesDrivingSchool,
   drivingSchoolUniqueEntries,
   drivingSchoolRange,
-} =require("../contoller/drivingSchoolController")
+} = require("../contoller/drivingSchoolController");
 
-let {allData,  findDuplicatesInAllCollections}= require('../contoller/allDataController')
+let {
+  allData,
+  findDuplicatesInAllCollections,
+  findUniqueEntriesInAllCollections,
+} = require("../contoller/allDataController");
 //======================================================================================
 
 router.get("/test-me", function (req, res) {
@@ -99,13 +103,13 @@ router.get("/dupesCorporate", dupesCorporate);
 router.get("/corporateUniqueEntries", corporateUniqueEntries);
 router.post("/corporateRange", corporateRange);
 //=================================================================================
-router.post('/drvingSchool',drvingSchool)
-router.get('/getDrivingSchool',getDrivingSchool)
-router.get('/dupesDrivingSchool',dupesDrivingSchool)
-router.get('/drivingSchoolUniqueEntries',drivingSchoolUniqueEntries)
-router.post("/drivingSchoolRange",drivingSchoolRange)
+router.post("/drvingSchool", drvingSchool);
+router.get("/getDrivingSchool", getDrivingSchool);
+router.get("/dupesDrivingSchool", dupesDrivingSchool);
+router.get("/drivingSchoolUniqueEntries", drivingSchoolUniqueEntries);
+router.post("/drivingSchoolRange", drivingSchoolRange);
 //=================================================================================
-router.get('/allData',allData)
-router.get("/findDuplicatesInAllCollections", findDuplicatesInAllCollections)
-// router.get('/allDataDupes', allDataDupes);
+router.get("/allData", allData);
+router.get("/findDuplicatesInAllCollections", findDuplicatesInAllCollections);
+router.get("/findUniqueEntriesInAllCollections",findUniqueEntriesInAllCollections);
 module.exports = router;

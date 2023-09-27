@@ -98,17 +98,68 @@ const findDuplicatesInAllCollections = async (req, res) => {
     }
 };
 
+const findUniqueEntries = async (model, phoneField, dateField, leadFromField, includeVehicle = false) => {
+    try {
+        const uniqueEntries = await model.aggregate([
+            { $match: { isDeleted: false } },
+            {
+                $group: {
+                    _id: {
+                        number: `$${phoneField}`,
+                        date: `$${dateField}`,
+                        leadFrom: `$${leadFromField}`,
+                        vehicle: includeVehicle ? `$LEADCF6` : null
+                    },
+                    doc: { $first: "$$ROOT" }
+                }
+            },
+            { $replaceRoot: { newRoot: "$doc" } },
+            { $sort: { createdAt: -1 } }
+        ]);
 
-// Export the findDuplicatesInAllCollections function for use in your Express routes
-module.exports = {
-    findDuplicatesInAllCollections
+        return { status: true, data: uniqueEntries };
+    } catch (error) {
+        return { status: false, message: error.message };
+    }
 };
+
+// Define a function to find unique entries in all collections
+const findUniqueEntriesInAllCollections = async (req, res) => {
+    try {
+        const uniqueData = [];
+
+        // For each collection, specify the model, phone field, date field, and leadFrom field
+        const collections = [
+            { model: corporateModel, phoneField: "phone", dateField: "date", leadFromField: "leadFrom" },
+            { model: drivingSchoolModel, phoneField: "phone", dateField: "date", leadFromField: "leadFrom" },
+            { model: financeModel, phoneField: "phone", dateField: "date", leadFromField: "leadFrom" },
+            { model: insuranceModel, phoneField: "Phone", dateField: "date", leadFromField: "leadFrom" },
+            { model: onRoadPriceModel, phoneField: "Mobile", dateField: "date", leadFromField: "leadFrom", includeVehicle: true }, // Include vehicle field
+            { model: popupModel, phoneField: "phone", dateField: "date", leadFromField: "leadFrom" },
+            { model: serviceModel, phoneField: "Phone", dateField: "date", leadFromField: "leadFrom" }
+        ];
+
+        for (const { model, phoneField, dateField, leadFromField, includeVehicle } of collections) {
+            const result = await findUniqueEntries(model, phoneField, dateField, leadFromField, includeVehicle);
+            if (result.status) {
+                uniqueData.push(...result.data);
+            } else {
+                return res.status(500).send({ status: false, message: result.message });
+            }
+        }
+
+        return res.status(200).send({ status: true, data: uniqueData });
+    } catch (error) {
+        return res.status(500).send({ status: false, message: error.message });
+    }
+};
+
 
 
 
 
 module.exports = {
     allData,
-    // findDuplicatesInCollections,
+    findUniqueEntriesInAllCollections,
     findDuplicatesInAllCollections
 };
