@@ -113,5 +113,5 @@ router.post("/drivingSchoolRange", drivingSchoolRange);
 router.get("/allData", allData);
 router.get("/findDuplicatesInAllCollections", findDuplicatesInAllCollections);
 router.get("/findUniqueEntriesInAllCollections",findUniqueEntriesInAllCollections);
-router.get("/findDataInRangeInAllCollections",findDataInRangeInAllCollections )
+router.post("/findDataInRangeInAllCollections",findDataInRangeInAllCollections )
 module.exports = router;
