@@ -61,11 +61,16 @@ let {
   findUniqueEntriesInAllCollections,
   findDataInRangeInAllCollections
 } = require("../contoller/allDataController");
+
+let {login , register}= require("../contoller/userController")
 //======================================================================================
 
 router.get("/test-me", function (req, res) {
   res.send("this is successfully created");
 });
+//====================================================================================
+router.post("/register", register);
+router.post("/login", login);
 //=====================================================================================
 
 router.post("/popup", popup);
