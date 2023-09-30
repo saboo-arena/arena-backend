@@ -34,7 +34,12 @@ const login = async (req, res) => {
           status: false,
            message: 'User not found.' 
           });
-    
+    if(isEmailExists.password !==password){
+        return res.status(401).send({ 
+            status: false,
+             message: "incorrect password" 
+            });
+    }
       // > Create Jwt Token
       const token = jwt.sign(
         { userID: isEmailExists._id?.toString() },
