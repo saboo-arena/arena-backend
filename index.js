@@ -1,14 +1,22 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const route = require("./src/router/route");
-const dotenv = require('dotenv'); // Import dotenv
+const dotenv = require('dotenv');
+const rateLimit = require("express-rate-limit");
 
-dotenv.config(); // Load environment variables from .env file
+dotenv.config();
 
 const app = express();
-//const multer= require("multer");
 
-//app.use( multer().any())
+// Use rate limiting middleware to limit the rate of incoming requests
+const limiter = rateLimit({
+  windowMs: 2000, // 10 seconds
+  max: 5, // Limit to 5 requests per windowMs
+  message: "Too many requests from this IP, please try again later.",
+});
+
+app.use(limiter);
+
 app.use(express.json());
 var cors = require("cors");
 app.use(cors());
