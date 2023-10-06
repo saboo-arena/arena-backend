@@ -5,11 +5,12 @@ require("moment-timezone");
 const insurance = async (req, res) => {
     try {
       let data = req.body;
-      moment.tz.setDefault("Asian/kolkata");
-      let date = moment().format("YYYY-MM-DD");
-      let time = moment().format("HH:MM:SS");
-      data.date = date;
-      data.time = time;
+      moment.tz.setDefault("Asia/Kolkata");
+      let dates = moment().format("YYYY-MM-DD");
+      let times = moment().format("HH:mm:ss");
+      data.date = dates;
+      data.time = times;
+  
       let savedata = await insuranceModel.create(data);
       res.status(201).send({ status: true, data: savedata });
     } catch (error) {

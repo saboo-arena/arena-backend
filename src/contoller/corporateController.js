@@ -5,12 +5,13 @@ require("moment-timezone")
 
 const corporate = async (req,res)=>{
     try {
-        let data = req.body;
-        moment.tz.setDefault("Asia/Kolkata");
-        let dates = moment().format("YYYY-MM-DD");
-        let times = moment().format("HH:mm:ss");
-        data.date = dates;
-        data.time = times;
+      let data = req.body;
+      moment.tz.setDefault("Asia/Kolkata");
+      let dates = moment().format("YYYY-MM-DD");
+      let times = moment().format("HH:mm:ss");
+      data.date = dates;
+      data.time = times;
+  
     
         //   let getdataCount = await financeModel.find().count();
         //   data.sno = getdataCount + 1;
