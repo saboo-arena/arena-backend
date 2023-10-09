@@ -2,6 +2,7 @@ const popupModel = require("../model/popupModel")
 const moment = require("moment");
 require("moment-timezone");
 const popup = async (req,res)=>{
+  res.setHeader("Access-Control-Allow-Origin", "*");
     try {
         let data = req.body;
     
@@ -18,6 +19,7 @@ const popup = async (req,res)=>{
 }
 
 const getPopups = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
     try {
       const filter = req.query;
       const sortOptions = {};
@@ -56,6 +58,7 @@ const getPopups = async (req, res) => {
 
 //=====================================================================
 const dupilicatepopups = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
     try {
       const repeatedPhoneNumbers = await popupModel.aggregate([
         {
@@ -85,6 +88,7 @@ const dupilicatepopups = async (req, res) => {
   };
 //============================================================================
 const popupUniqueEntries = async (req,res)=>{
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     let  data = await popupModel.aggregate([
       { $match: { isDeleted: false } },
@@ -108,6 +112,7 @@ const popupUniqueEntries = async (req,res)=>{
 }
 
 const popupRangeEntries = async (req,res)=>{
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     const { startDate, endDate } = req.body; // Assuming startDate and endDate are provided in the request body
 

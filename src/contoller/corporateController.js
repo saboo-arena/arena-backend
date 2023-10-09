@@ -4,6 +4,7 @@ const moment = require("moment")
 require("moment-timezone")
 
 const corporate = async (req,res)=>{
+  res.setHeader("Access-Control-Allow-Origin", "*");
     try {
       let data = req.body;
       moment.tz.setDefault("Asia/Kolkata");
@@ -64,6 +65,7 @@ const getCorporate = async (req, res) => {
   };
   //=========================================================================
   const dupesCorporate = async (req,res)=>{
+    res.setHeader("Access-Control-Allow-Origin", "*");
     try {
       const repeatedPhoneNumbers = await corporateModel.aggregate([
         {
@@ -93,6 +95,7 @@ const getCorporate = async (req, res) => {
     }
     //==========================================================================
     const corporateUniqueEntries = async (req,res)=>{
+      res.setHeader("Access-Control-Allow-Origin", "*");
         try {
           let data = await corporateModel.aggregate([
             { $match: { isDeleted: false } },
@@ -112,6 +115,7 @@ const getCorporate = async (req, res) => {
       //==================================================================
 
       const corporateRange = async (req, res) => {
+        res.setHeader("Access-Control-Allow-Origin", "*");
         try {
           const { startDate, endDate } = req.body; // Assuming startDate and endDate are provided in the request body
       

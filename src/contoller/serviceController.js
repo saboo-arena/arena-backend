@@ -4,6 +4,7 @@ const moment = require("moment");
 require("moment-timezone");
 
 const service = async (req,res)=>{
+  res.setHeader("Access-Control-Allow-Origin", "*");
     try {
         let data = req.body;
     
@@ -19,6 +20,7 @@ const service = async (req,res)=>{
       }
 }
 let getService = async (req,res)=>{
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     const filter = req.query;
     const sortOptions = {};
@@ -54,6 +56,7 @@ return res.status(200).send({status:true,data:data})
 }
 //============================================================================
 const dupeService =async (req,res)=>{
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     const repeatedPhoneNumbers = await serviceModel.aggregate([
       {
@@ -83,6 +86,7 @@ const dupeService =async (req,res)=>{
 }
 //===========================================================================================
 const serviceUniqueEntries = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     let  data = await serviceModel.aggregate([
       { $match: { isDeleted: false } },
@@ -106,6 +110,7 @@ const serviceUniqueEntries = async (req, res) => {
 };
 //=========================================================================================
 const serviceRangeData = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     const { startDate, endDate } = req.body; // Assuming startDate and endDate are provided in the request body
 

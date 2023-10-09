@@ -2,6 +2,7 @@ const onRoadPriceModel = require("../model/onRoadPriceModel")
 const moment = require("moment");
 require("moment-timezone");
 const onRoadPrice = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     let data = req.body;
     moment.tz.setDefault("Asia/Kolkata");
@@ -62,6 +63,7 @@ const getOnRoadPrice = async (req, res) => {
 //================================================================================
 
   const duplicateOnRoadPrice = async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
     try {
       const repeatedPhoneNumbers = await onRoadPriceModel.aggregate([
         {
@@ -98,6 +100,7 @@ const getOnRoadPrice = async (req, res) => {
 
 //=================================================================
   const onRoadPriceUniqueEntries = async (req,res)=>{
+    res.setHeader("Access-Control-Allow-Origin", "*");
     try {
       let   data = await onRoadPriceModel.aggregate([
         { $match: { isDeleted: false} },
@@ -123,6 +126,7 @@ const getOnRoadPrice = async (req, res) => {
 //===========================================================================
 
   const onRoadPriceRange = async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
     try {
       const { startDate, endDate } = req.body; // Assuming startDate and endDate are provided in the request body
   

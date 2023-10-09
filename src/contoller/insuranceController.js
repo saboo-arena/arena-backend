@@ -3,6 +3,7 @@ const insuranceModel = require("../model/insuranceModel")
 const moment = require("moment");
 require("moment-timezone");
 const insurance = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
     try {
       let data = req.body;
       moment.tz.setDefault("Asia/Kolkata");
@@ -19,6 +20,7 @@ const insurance = async (req, res) => {
   };
   //====================================================================
   let getIsurance = async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
     try {
       const filter = req.query;
       let sortOptions = {};
@@ -53,6 +55,7 @@ const insurance = async (req, res) => {
   };
   //===============================================================================
   const duplicateInsurance = async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
     try {
       const repeatedPhoneNumbers = await insuranceModel.aggregate([
         {
@@ -85,6 +88,7 @@ const insurance = async (req, res) => {
   };
   //==========================================================================
   const insuranceUniqueEntries = async (req,res)=>{
+    res.setHeader("Access-Control-Allow-Origin", "*");
     try {
       let   data = await insuranceModel.aggregate([
         { $match: { isDeleted: false } },
@@ -111,6 +115,7 @@ const insurance = async (req, res) => {
   //========================================================================
   
   const insuranceRange = async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
     try {
       const { startDate, endDate } = req.body; // Assuming startDate and endDate are provided in the request body
   

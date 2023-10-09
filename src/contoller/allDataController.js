@@ -7,6 +7,7 @@ const popupModel = require("../model/popupModel");
 const serviceModel = require("../model/serviceModel");
 
 const allData = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
     try {
       // Use Promise.all to query data from multiple collections concurrently
       const data = await Promise.all([
@@ -32,12 +33,14 @@ const allData = async (req, res) => {
 //===========================================================================
 
 const findDuplicates = async (
+  
   model,
   phoneField,
   dateField,
   leadFromField,
   includeVehicle = false
 ) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     const groupPipeline = [
       {
@@ -75,6 +78,7 @@ const findDuplicates = async (
 // Define a function to find duplicates in all collections
 // Define a function to find duplicates in all collections
 const findDuplicatesInAllCollections = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     const duplicateData = [];
 
@@ -159,6 +163,7 @@ const findUniqueEntries = async (
   leadFromField,
   includeVehicle = false
 ) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     const uniqueEntries = await model.aggregate([
       { $match: { isDeleted: false } },
@@ -185,6 +190,7 @@ const findUniqueEntries = async (
 
 // Define a function to find unique entries in all collections
 const findUniqueEntriesInAllCollections = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     const uniqueData = [];
 
@@ -265,7 +271,8 @@ const findUniqueEntriesInAllCollections = async (req, res) => {
 
 //==========================================================================
 const findDataInRange = async (model, phoneField, dateField, leadFromField, startDate, endDate, includeVehicle = false) => {
-    try {
+  res.setHeader("Access-Control-Allow-Origin", "*"); 
+  try {
         const dataInRange = await model.aggregate([
             {
                 $match: {
@@ -301,6 +308,7 @@ const findDataInRange = async (model, phoneField, dateField, leadFromField, star
 
 // Define a function to find data within a date range in all collections
 const findDataInRangeInAllCollections = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
     try {
         const dataInRange = [];
         const { startDate, endDate } = req.body; // Assuming startDate and endDate are provided in the request body

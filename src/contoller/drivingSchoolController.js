@@ -3,6 +3,7 @@ const moment = require("moment");
 require("moment-timezone");
 
 const drvingSchool = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     let data = req.body;
     moment.tz.setDefault("Asia/Kolkata");
@@ -60,6 +61,7 @@ const getDrivingSchool = async (req, res) => {
 
 //=========================================================================
 const dupesDrivingSchool = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     const repeatedPhoneNumbers = await drivingSchoolModel.aggregate([
       {
@@ -89,6 +91,7 @@ const dupesDrivingSchool = async (req, res) => {
 };
 //==========================================================================
 const drivingSchoolUniqueEntries = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     let data = await drivingSchoolModel.aggregate([
       { $match: { isDeleted: false } },
@@ -112,6 +115,7 @@ const drivingSchoolUniqueEntries = async (req, res) => {
 //==================================================================
 
 const drivingSchoolRange = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     const { startDate, endDate } = req.body; // Assuming startDate and endDate are provided in the request body
 

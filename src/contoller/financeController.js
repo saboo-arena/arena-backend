@@ -4,6 +4,7 @@ const moment = require("moment");
 require("moment-timezone");
 
 const finance = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
     try {
       let data = req.body;
       moment.tz.setDefault("Asia/Kolkata");
@@ -62,6 +63,7 @@ const finance = async (req, res) => {
   };
   //=======================================================================
   const duplicateFinance = async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
     try {
       const repeatedPhoneNumbers = await financeModel.aggregate([
         {
@@ -96,6 +98,7 @@ const finance = async (req, res) => {
   //====================================================================================
 
   const financeUniqueEntries = async (req,res)=>{
+    res.setHeader("Access-Control-Allow-Origin", "*");
     try {
       let  data = await financeModel.aggregate([
         { $match: { isDeleted: false} },
@@ -119,6 +122,7 @@ const finance = async (req, res) => {
   }
   //================================================================
   const financeRange = async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
     try {
       const { startDate, endDate } = req.body; // Assuming startDate and endDate are provided in the request body
   
