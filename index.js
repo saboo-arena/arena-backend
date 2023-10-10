@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const route = require("./src/router/route");
 const dotenv = require('dotenv'); // Import dotenv
-
+var cors = require("cors");
 dotenv.config(); // Load environment variables from .env file
 
 const app = express();
@@ -10,8 +10,16 @@ const app = express();
 
 //app.use( multer().any())
 app.use(express.json());
-var cors = require("cors");
-app.use(cors());
+
+const corsOptions = {
+  origin: 'https://arena-backend-zj42.onrender.com', // Replace with your desired origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Content-Type',
+};
+
+app.use(cors(corsOptions)); // Use the corsOptions for CORS configuration
+
+
 
 mongoose
   .connect(

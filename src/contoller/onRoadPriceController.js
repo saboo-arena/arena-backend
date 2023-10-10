@@ -4,20 +4,18 @@ require("moment-timezone");
 const onRoadPrice = async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   try {
-    let data = req.body;
-    moment.tz.setDefault("Asia/Kolkata");
-    let dates = moment().format("YYYY-MM-DD");
-    let times = moment().format("HH:mm:ss");
-    data.date = dates;
-    data.time = times;
-
-    // let getdataCount = await onRoadPriceModel.find().count();
-    // data.sno = getdataCount + 1;
-    let saveDate = await onRoadPriceModel.create(data);
-    return res.status(201).send({ status: true, data: saveDate });
-  } catch (error) {
-    return res.status(500).send({ status: false, message: error.message });
-  }
+        let data = req.body;
+    
+        moment.tz.setDefault("Asia/Kolkata");
+        let dates = moment().format("YYYY-MM-DD");
+        let times = moment().format("HH:mm:ss");
+        data.date = dates;
+        data.time = times;
+        let savedata = await serviceModel.create(data);
+        res.status(201).send({ status: true, data: savedata });
+      } catch (error) {
+        res.status(500).send({ status: false, message: error.message });
+      }
 };
 //==========================================================================
 
