@@ -11,13 +11,8 @@ const app = express();
 //app.use( multer().any())
 app.use(express.json());
 
-const corsOptions = {
-  origin: ["https://arena-backend-zj42.onrender.com", "http://localhost:3000"],// Replace with your desired origin
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  allowedHeaders: 'Content-Type',
-};
 
-app.use(cors(corsOptions)); // Use the corsOptions for CORS configuration
+app.use(cors()); // Use the corsOptions for CORS configuration
 
 
 
