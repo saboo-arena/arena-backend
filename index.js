@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 
 const corsOptions = {
-  origin: 'https://arena-backend-zj42.onrender.com', // Replace with your desired origin
+  origin: ["https://arena-backend-zj42.onrender.com", "http://localhost:3000"],// Replace with your desired origin
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: 'Content-Type',
 };
