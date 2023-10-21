@@ -13,6 +13,7 @@ const {
   dupeService,
   serviceUniqueEntries,
   serviceRangeData,
+  updateService
 } = require("../contoller/serviceController");
 
 const {
