@@ -3,12 +3,11 @@ const insuranceModel = require("../model/insuranceModel")
 const moment = require("moment");
 require("moment-timezone");
 const insurance = async (req, res) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Credentials', true);
-  res.header('Access-Control-Allow-Origin', 'https://saboomaruti.in');
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  
 
 
     try {
