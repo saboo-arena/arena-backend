@@ -23,7 +23,7 @@ const corporate = async (req,res)=>{
     }
 }
 
-
+//========================================================================
 const getCorporate = async (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     try {
@@ -67,7 +67,7 @@ const getCorporate = async (req, res) => {
   const dupesCorporate = async (req,res)=>{
     res.setHeader("Access-Control-Allow-Origin", "*");
     try {
-      const repeatedPhoneNumbers = await corporateModel.aggregate([
+      const repeatedPhoneNumbers = await co.aggregate([
         {
           $group: {
             _id: {
