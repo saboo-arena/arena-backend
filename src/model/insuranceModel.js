@@ -1,13 +1,13 @@
 const mongoose = require("mongoose")
 
 const InsuranceSchema = new mongoose.Schema({
-    Last_Name:{
+   name:{
         type:String
     },
-    Email:{
+    email:{
         type:String
     },
-    Phone:{
+    phone:{
         type:String
     },
     leadFrom : {
