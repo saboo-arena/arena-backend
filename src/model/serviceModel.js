@@ -1,20 +1,20 @@
 const mongoose = require("mongoose");
 const serviceSchema = new mongoose.Schema(
   {
-    Last_Name: {
+    name: {
       type: String,
       trim: true,
     },
-    Email: {
+    email: {
       type: String,
       trim: true,
     },
-    Phone: {
+    phone: {
       type: String,
       trim: true,
     },
 
-    LEADCF22: {
+    outlet: {
       type: String,
       trim: true,
     },
