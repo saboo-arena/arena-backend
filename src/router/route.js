@@ -13,7 +13,7 @@ const {
   dupeService,
   serviceUniqueEntries,
   serviceRangeData,
-  updateService
+  updateService,
 } = require("../contoller/serviceController");
 
 const {
@@ -60,10 +60,17 @@ let {
   allData,
   findDuplicatesInAllCollections,
   findUniqueEntriesInAllCollections,
-  findDataInRangeInAllCollections
+  findDataInRangeInAllCollections,
 } = require("../contoller/allDataController");
 
-let {login , register}= require("../contoller/userController")
+let { login, register } = require("../contoller/userController");
+const {
+  general,
+  getGenerals,
+  duplicateGeneral,
+  generalUniqueEntries,
+  generalRange,
+} = require("../contoller/generalController");
 //======================================================================================
 
 router.get("/test-me", function (req, res) {
@@ -118,6 +125,18 @@ router.post("/drivingSchoolRange", drivingSchoolRange);
 //=================================================================================
 router.get("/allData", allData);
 router.get("/findDuplicatesInAllCollections", findDuplicatesInAllCollections);
-router.get("/findUniqueEntriesInAllCollections",findUniqueEntriesInAllCollections);
-router.post("/findDataInRangeInAllCollections",findDataInRangeInAllCollections )
+router.get(
+  "/findUniqueEntriesInAllCollections",
+  findUniqueEntriesInAllCollections
+);
+router.post(
+  "/findDataInRangeInAllCollections",
+  findDataInRangeInAllCollections
+);
+//================================================================================
+router.post("/general", general);
+router.get("/getGenerals", getGenerals);
+router.get("/duplicateGeneral", duplicateGeneral);
+router.get("/generalUniqueEntries", generalUniqueEntries);
+router.post("/generalRange", generalRange);
 module.exports = router;
