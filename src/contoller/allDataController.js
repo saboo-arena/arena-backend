@@ -5,6 +5,8 @@ const insuranceModel = require("../model/insuranceModel");
 const onRoadPriceModel = require("../model/onRoadPriceModel");
 const popupModel = require("../model/popupModel");
 const serviceModel = require("../model/serviceModel");
+const generalModel = require("../model/generalModel")
+const contactUsModel = require("../model/contactUsModel")
 
 const allData = async (req, res) => {
   try {
@@ -17,6 +19,8 @@ const allData = async (req, res) => {
       onRoadPriceModel.find().sort({ createdAt: -1 }).exec(),
       popupModel.find().sort({ createdAt: -1 }).exec(),
       serviceModel.find().sort({ createdAt: -1 }).exec(),
+      generalModel.find().sort({ createdAt: -1 }).exec(),
+      contactUsModel.find().sort({ createdAt: -1 }).exec(),
     ]);
 
     // Combine the results into a single array
@@ -118,6 +122,18 @@ const findDuplicatesInAllCollections = async (req, res) => {
       },
       {
         model: serviceModel,
+        phoneField: "Phone",
+        dateField: "date",
+        leadFromField: "leadFrom",
+      },
+      {
+        model: contactUsModel,
+        phoneField: "Phone",
+        dateField: "date",
+        leadFromField: "leadFrom",
+      },
+      {
+        model: generalModel,
         phoneField: "Phone",
         dateField: "date",
         leadFromField: "leadFrom",
@@ -226,6 +242,18 @@ const findUniqueEntriesInAllCollections = async (req, res) => {
       },
       {
         model: serviceModel,
+        phoneField: "Phone",
+        dateField: "date",
+        leadFromField: "leadFrom",
+      },
+      {
+        model: contactUsModel,
+        phoneField: "Phone",
+        dateField: "date",
+        leadFromField: "leadFrom",
+      },
+      {
+        model: generalModel,
         phoneField: "Phone",
         dateField: "date",
         leadFromField: "leadFrom",
@@ -347,6 +375,18 @@ const findDataInRangeInAllCollections = async (req, res) => {
       },
       {
         model: serviceModel,
+        phoneField: "Phone",
+        dateField: "date",
+        leadFromField: "leadFrom",
+      },
+      {
+        model: contactUsModel,
+        phoneField: "Phone",
+        dateField: "date",
+        leadFromField: "leadFrom",
+      },
+      {
+        model: generalModel,
         phoneField: "Phone",
         dateField: "date",
         leadFromField: "leadFrom",

@@ -25,14 +25,15 @@ const contactUsSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
-    subject :{
-        type: String,
-        require: true,
-    },
+
     message: {
       type: String,
       require: true,
     },
+    leadFrom : {
+        type: String,
+        default:"Contact us"
+       },
     date: {
       type: String,
     },
