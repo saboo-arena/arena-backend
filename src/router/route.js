@@ -71,6 +71,8 @@ const {
   generalUniqueEntries,
   generalRange,
 } = require("../contoller/generalController");
+
+const{contactUs , getContactUs}= require("../contoller/contactUsController")
 //======================================================================================
 
 router.get("/test-me", function (req, res) {
@@ -139,4 +141,8 @@ router.get("/getGenerals", getGenerals);
 router.get("/duplicateGeneral", duplicateGeneral);
 router.get("/generalUniqueEntries", generalUniqueEntries);
 router.post("/generalRange", generalRange);
+
+//===============================================================================
+router.post("/contactUs",contactUs)
+router.get("/getContactUs",getContactUs)
 module.exports = router;
