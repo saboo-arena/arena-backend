@@ -5,12 +5,10 @@ const generalSchema = new mongoose.Schema(
         type: String,
         trim: true,
       },
-     
       phone: {
         type: String,
         trim: true,
       },
-  
       model: {   
         type: String,
         trim: true,
@@ -22,6 +20,10 @@ const generalSchema = new mongoose.Schema(
       email: {   
         type: String,
         trim: true,
+      },
+      message:{
+        type:String,
+        trim :true
       },
       leadFrom : {
         type: String,
