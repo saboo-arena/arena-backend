@@ -25,6 +25,10 @@ const contactUsSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
+    subject :{
+        type: String,
+        require: true,
+    },
     message: {
       type: String,
       require: true,
