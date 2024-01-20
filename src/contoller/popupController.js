@@ -96,7 +96,7 @@ const popupUniqueEntries = async (req,res)=>{
         $group: {
           _id: {
             date: "$date",
-            Phone: "$Phone",
+            Phone: "$phone",
            
           },
           doc: { $first: "$$ROOT" },
@@ -132,7 +132,7 @@ const popupRangeEntries = async (req,res)=>{
         $group: {
           _id: {
             date: "$date",
-            Phone: "$Phone",
+            Phone: "$phone",
             
           },
           doc: { $first: "$$ROOT" },

@@ -47,7 +47,7 @@ const insurance = async (req, res) => {
             $group: {
               _id: {
                 date: "$date",
-                mobile: "$Phone",
+                mobile: "$phone",
               },
               doc: { $first: "$$ROOT" },
             },
@@ -72,7 +72,7 @@ const insurance = async (req, res) => {
           $group: {
             _id: {
               date: "$date",
-              mobile: "$Phone",
+              mobile: "$phone",
             
             },
             count: { $sum: 1 },
@@ -108,7 +108,7 @@ const insurance = async (req, res) => {
           $group: {
             _id: {
               date: "$date",
-              mobile: "$Phone",
+              mobile: "$phone",
               model: "$model",
             },
             doc: { $first: "$$ROOT" },
@@ -149,7 +149,7 @@ const insurance = async (req, res) => {
           $group: {
             _id: {
               date: "$date",
-              mobile: "$Phone",
+              mobile: "$phone",
     
             },
             doc: { $first: "$$ROOT" },

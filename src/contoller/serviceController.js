@@ -44,7 +44,7 @@ let getService = async (req,res)=>{
             date: filterDate,
           },
         },
-        { $group: { _id: "$Phone", doc: { $first: "$$ROOT" } } },
+        { $group: { _id: "$phone", doc: { $first: "$$ROOT" } } },
         { $replaceRoot: { newRoot: "$doc" } },
         // { $sort: { createdAt: -1 } },
       ]);
@@ -62,7 +62,7 @@ const dupeService =async (req,res)=>{
       {
         $group: {
           _id: {
-            number: "$Phone",
+            number: "$phone",
             date: "$date",
           },
           count: { $sum: 1 },
@@ -94,7 +94,7 @@ const serviceUniqueEntries = async (req, res) => {
         $group: {
           _id: {
             date: "$date",
-            Phone: "$Phone",
+            Phone: "$phone",
            
           },
           doc: { $first: "$$ROOT" },
@@ -130,7 +130,7 @@ const serviceRangeData = async (req, res) => {
         $group: {
           _id: {
             date: "$date",
-            Phone: "$Phone",
+            Phone: "$phone",
             
           },
           doc: { $first: "$$ROOT" },
