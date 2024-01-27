@@ -7,7 +7,7 @@ const popupModel = require("../model/popupModel");
 const serviceModel = require("../model/serviceModel");
 const generalModel = require("../model/generalModel")
 const contactUsModel = require("../model/contactUsModel")
-
+const accessoriesModel = require("../model/accessoriesModel")
 const allData = async (req, res) => {
   try {
     // Use Promise.all to query data from multiple collections concurrently
@@ -21,6 +21,7 @@ const allData = async (req, res) => {
       serviceModel.find().sort({ createdAt: -1 }).exec(),
       generalModel.find().sort({ createdAt: -1 }).exec(),
       contactUsModel.find().sort({ createdAt: -1 }).exec(),
+      accessoriesModel.find().sort({ createdAt: -1 }).exec(),
     ]);
 
     // Combine the results into a single array
@@ -52,7 +53,7 @@ const findDuplicates = async (
             number: `$${phoneField}`,
             date: `$${dateField}`,
             leadFrom: `$${leadFromField}`,
-            vehicle: includeVehicle ? `$LEADCF6` : null,
+            vehicle: includeVehicle ? `$model` : null,
           },
           count: { $sum: 1 },
         },
@@ -88,28 +89,32 @@ const findDuplicatesInAllCollections = async (req, res) => {
         phoneField: "phone",
         dateField: "date",
         leadFromField: "leadFrom",
+      
       },
       {
         model: drivingSchoolModel,
         phoneField: "phone",
         dateField: "date",
         leadFromField: "leadFrom",
+
       },
       {
         model: financeModel,
         phoneField: "phone",
         dateField: "date",
         leadFromField: "leadFrom",
+        includeVehicle: true,
       },
       {
         model: insuranceModel,
-        phoneField: "Phone",
+        phoneField: "phone",
         dateField: "date",
         leadFromField: "leadFrom",
+
       },
       {
         model: onRoadPriceModel,
-        phoneField: "Mobile",
+        phoneField: "phone",
         dateField: "date",
         leadFromField: "leadFrom",
         includeVehicle: true,
@@ -119,24 +124,35 @@ const findDuplicatesInAllCollections = async (req, res) => {
         phoneField: "phone",
         dateField: "date",
         leadFromField: "leadFrom",
+        includeVehicle: true,
       },
       {
         model: serviceModel,
-        phoneField: "Phone",
+        phoneField: "phone",
         dateField: "date",
         leadFromField: "leadFrom",
+
       },
       {
         model: contactUsModel,
-        phoneField: "Phone",
+        phoneField: "phone",
         dateField: "date",
         leadFromField: "leadFrom",
+        includeVehicle: true,
       },
       {
         model: generalModel,
-        phoneField: "Phone",
+        phoneField: "phone",
         dateField: "date",
         leadFromField: "leadFrom",
+        includeVehicle: true,
+      },
+      {
+        model: accessoriesModel,
+        phoneField: "phone",
+        dateField: "date",
+        leadFromField: "leadFrom",
+        includeVehicle: true,
       },
     ];
     for (const {
@@ -258,6 +274,14 @@ const findUniqueEntriesInAllCollections = async (req, res) => {
         dateField: "date",
         leadFromField: "leadFrom",
       },
+      {
+        model: accessoriesModel,
+        phoneField: "phone",
+        dateField: "date",
+        leadFromField: "leadFrom",
+        includeVehicle: true,
+      },
+     
     ];
     for (const {
       model,
@@ -390,6 +414,13 @@ const findDataInRangeInAllCollections = async (req, res) => {
         phoneField: "Phone",
         dateField: "date",
         leadFromField: "leadFrom",
+      },
+      {
+        model: accessoriesModel,
+        phoneField: "phone",
+        dateField: "date",
+        leadFromField: "leadFrom",
+        includeVehicle: true,
       },
     ];
     for (const {

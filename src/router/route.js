@@ -73,6 +73,15 @@ const {
 } = require("../contoller/generalController");
 
 const{contactUs , getContactUs}= require("../contoller/contactUsController")
+
+const {
+  accessories,
+  getAccessories,
+  dupeAccessories,
+  accessoriesUniqueEntries,
+  accessoriesRangeData,
+} = require("../contoller/AccessoriesController");
+
 //======================================================================================
 
 router.get("/test-me", function (req, res) {
@@ -145,4 +154,13 @@ router.post("/generalRange", generalRange);
 //===============================================================================
 router.post("/contactUs",contactUs)
 router.get("/getContactUs",getContactUs)
+
+//===============================================================================
+
+
+router.post("/accessories", accessories);
+router.get("/getAccessories", getAccessories);
+router.get("/dupeAccessories",  dupeAccessories);
+router.get("/accessoriesUniqueEntries", accessoriesUniqueEntries);
+router.post("/accessoriesRangeData",  accessoriesRangeData);
 module.exports = router;
