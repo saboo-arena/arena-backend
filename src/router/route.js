@@ -142,13 +142,15 @@ router.get("/drivingSchoolUniqueEntries",authentication, drivingSchoolUniqueEntr
 router.post("/drivingSchoolRange",authentication, drivingSchoolRange);
 //=================================================================================
 router.get("/allData", allData);
-router.get("/findDuplicatesInAllCollections", findDuplicatesInAllCollections);
+router.get("/findDuplicatesInAllCollections",authentication, findDuplicatesInAllCollections);
 router.get(
   "/findUniqueEntriesInAllCollections",
+  authentication,
   findUniqueEntriesInAllCollections
 );
 router.post(
   "/findDataInRangeInAllCollections",
+  authentication,
   findDataInRangeInAllCollections
 );
 //================================================================================
