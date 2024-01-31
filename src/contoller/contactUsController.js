@@ -40,4 +40,98 @@ const getContactUs = async (req,res)=>{
   }
 }
 
-module.exports = {contactUs , getContactUs}
+
+const dupesContactUs = async (req,res)=>{
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  try {
+    const repeatedPhoneNumbers = await contactUsModel.aggregate([
+      {
+        $group: {
+          _id: {
+            number: "$phone",
+            date: "$date"
+          },
+          count: { $sum: 1 }
+        }
+      },
+      {
+        $project: {
+          _id: 0, // Exclude _id from the result
+          number: "$_id.number",
+          date: "$_id.date",
+          count: 1
+        }
+      },
+      { $match: { count: { $gt: 1 } } }
+    ]);
+
+    return res.status(200).send({ status: true, data: repeatedPhoneNumbers });
+  } catch (error) {
+    return res.status(500).send({ status: false, message: error.message });
+  }
+  }
+  //==========================================================================
+  const contactUsUniqueEntries = async (req,res)=>{
+    res.setHeader("Access-Control-Allow-Origin", "*");
+      try {
+        let data = await contactUsModel.aggregate([
+          { $match: { isDeleted: false } },
+          { $group: { _id: {
+              number: "$phone",
+              date: "$date"
+            }, doc: { $first: "$$ROOT" } } },
+          { $replaceRoot: { newRoot: "$doc" } },
+          { $sort: { createdAt: -1 } },
+        ]);
+        return res.status(200).send({ status: true, data: data });
+      } catch (error) {
+        return res.status(500).send({ status: false, message: error.message });
+      }
+    
+    }
+    //==================================================================
+
+    const contactUsRange = async (req, res) => {
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      try {
+        const { startDate, endDate } = req.body; // Assuming startDate and endDate are provided in the request body
+    
+        let data = await contactUsModel.aggregate([
+          {
+            $match: {
+              isDeleted: false,
+              $expr: {
+                $and: [
+                  { $gte: ["$date", startDate] },
+                  { $lte: ["$date", endDate] }
+                ]
+              }
+            }
+          },
+          {
+            $group: {
+              _id: {
+                  date: "$date",
+                  mobile: "$phone",
+              },
+              doc: { $first: "$$ROOT" },
+            },
+          },
+          { $replaceRoot: { newRoot: "$doc" } },
+          { $sort: { createdAt: -1 } }, // Note: createdAt field doesn't seem to be in the pipeline
+        ]);
+    
+        return res.status(200).send({ status: true, data: data });
+      } catch (error) {
+        return res.status(500).send({ status: false, message: error.message });
+      }
+    }
+
+
+    module.exports = {
+      contactUs,
+      getContactUs,
+    contactUsRange,
+    contactUsUniqueEntries,
+      dupesContactUs,
+    };

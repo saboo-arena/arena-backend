@@ -1,6 +1,7 @@
 const generalModel = require("../model/generalModel");
 const moment = require("moment");
 require("moment-timezone");
+
 const general = async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   try {
@@ -17,6 +18,7 @@ const general = async (req, res) => {
     res.status(500).send({ status: false, message: error.message });
   }
 };
+
 //==========================================================================
 
 const getGenerals = async (req, res) => {
