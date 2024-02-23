@@ -68,8 +68,8 @@ const duplicateOnRoadPrice = async (req, res) => {
         $group: {
           _id: {
             date: "$date",
-            mobile: "$Mobile",
-            vehicle: "$LEADCF6",
+            mobile: "$phone",
+            vehicle: "$model",
           },
           count: { $sum: 1 },
         },
