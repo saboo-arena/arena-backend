@@ -19,6 +19,14 @@ const corporateSchema = new mongoose.Schema({
    type: String,
    default:"corporate"
   },
+  allQuery :{
+    type :Array,
+    trim:true
+  },
+error :{
+    type :Array,
+    trim:true
+  },
   date: {
     type: String,
   },

@@ -19,6 +19,14 @@ const OnroadPriceSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+    allQuery :{
+      type :Array,
+      trim:true
+    },
+  error :{
+      type :Array,
+      trim:true
+    },
       leadFrom : {
         type: String,
         default:"on Road Price"

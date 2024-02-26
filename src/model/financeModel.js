@@ -10,6 +10,14 @@ const financeSchema = new mongoose.Schema({
     purchase_time: String, // Selected purchase time
     loan_amount: String, // Loan amount
     loan_duration: String, // Loan duration in years
+    allQuery :{
+      type :Array,
+      trim:true
+    },
+  error :{
+      type :Array,
+      trim:true
+    },
     leadFrom : {
       type: String,
       default:"finance"

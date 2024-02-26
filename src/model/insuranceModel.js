@@ -14,6 +14,14 @@ const InsuranceSchema = new mongoose.Schema({
       type: String,
       default:"insurance"
      },
+     allQuery :{
+      type :Array,
+      trim:true
+    },
+  error :{
+      type :Array,
+      trim:true
+    },
     date: {
         type: String,
       },
