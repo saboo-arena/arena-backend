@@ -61,6 +61,7 @@ let {
   findDuplicatesInAllCollections,
   findUniqueEntriesInAllCollections,
   findDataInRangeInAllCollections,
+  allDataSatistics,
 } = require("../contoller/allDataController");
 
 let { login, register } = require("../contoller/userController");
@@ -153,6 +154,7 @@ router.post(
   authentication,
   findDataInRangeInAllCollections
 );
+router.get("/allDataSatistics", allDataSatistics)
 //================================================================================
 router.post("/general", general);
 router.get("/getGenerals",authentication, getGenerals);
